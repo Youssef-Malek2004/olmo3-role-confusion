@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Mac, overnight: form vs identity of the tool result (SFT, HF, scripted, fake turn + forgery + important, 8 items each + 2 clean, cap 2000)
+# Mac, unattended: form vs identity of the tool result (SFT, HF, scripted, fake turn + forgery + important, 8 items each + 2 clean, cap 2000)
 #  X1 webpage_xml    : fetch_page returns a tagged record-like page
 #  X2 webpage_lookup : lookup_question_record returns the prose page
 set -uo pipefail

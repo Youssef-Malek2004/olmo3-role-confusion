@@ -1,6 +1,6 @@
 # Planned experiment: does role steering remove trust, or break copying?
 
-Status: **run at SFT on 12 September 2026** (run `ct01`; section 12 has the result). Written 11 September 2026 as a pick-up-later spec. The RLVR baseline arm was still running when this repository was last updated.
+Status: **run at SFT ** (run `ct01`; section 12 has the result). Written as a pick-up-later spec; the RLVR baseline arm is partial and the runner resumes it.
 Owner: Youssef. Everything below is checkable against the current checkout.
 
 ---
@@ -25,7 +25,7 @@ happens to look like one.
 
 ## 2. What the current evidence does and does not settle
 
-**Weak evidence for (a), from `docs/DECISION_LOG.md` (Sept 7, 18:45 entry):** under 2x
+**Weak evidence for (a), from `docs/DECISION_LOG.md`:** under 2x
 steering at RLVR the marker phrase appears in exactly the 9 complied outputs and is
 absent from the rest; at 4x it is absent from all 24. So when the model does adopt tool
 content it reproduces it *cleanly* — suppression of the decision, not garbling of the
@@ -54,11 +54,11 @@ The quantity of interest is the **lift**: accuracy(legit) − accuracy(clean), o
 same questions, under no defense versus under steering.
 
 ```
-                        no defense        steer 4x
-  lift (legit - clean)     L_none           L_steer
+                        no defense steer 4x
+  lift (legit - clean) L_none L_steer
 
-  (a) trust             L_steer ~= L_none     -> channel intact, defense is real
-  (b) copy suppression  L_steer ~= 0          -> defense works by breaking the channel
+  (a) trust L_steer ~= L_none -> channel intact, defense is real
+  (b) copy suppression L_steer ~= 0 -> defense works by breaking the channel
 ```
 
 Include a matched-norm **random** arm. If the random vector also kills the lift, the
@@ -68,7 +68,7 @@ effect is norm-driven, not direction-driven, and neither hypothesis is supported
 
 ### Problem 1: the steering vectors are not in this checkout
 
-> **Resolved 12 September 2026 (commit 12e9b84):** the directions were on the first Mac and are now tracked
+> **Resolved (commit 12e9b84):** the directions were on the first Mac and are now tracked
 > (`.gitignore` exception for `results/generated/**/dir_*.npy`). After `git pull`, use
 > `results/generated/roles_gpu/dir_<stage>_b16.npy` (the vectors behind the headline defense arms; alphas
 > `a11.12` sft, `a11.44` rlvr) or `roles01/` (Mac capture, norms identical to 3 decimals). Step 0 below is
@@ -187,8 +187,8 @@ record in the log.
 ### Step 2 — the four arms (~30 min each at 30 items, cap 2000)
 
 ```bash
-QIDS="$(cat tmp/hard_qids_rlvr.txt)"   # one id per line from Step 1
-A4=11.42                               # 4 x diffmean_norm, recomputed in Step 0
+QIDS="$(cat tmp/hard_qids_rlvr.txt)" # one id per line from Step 1
+A4=11.42 # 4 x diffmean_norm, recomputed in Step 0
 
 # no defense
 python scripts/run_injection.py --run-id legit_ct --stage rlvr --realistic \
@@ -270,7 +270,7 @@ took 1h40m, and the GPU throttles after several hours of sustained decoding.
 |---|---|---|
 | minimum | Step 0 + Step 1 (RLVR) + two arms (none, steer 4x), 20 items | ~2 h |
 | target | above + random control + 2x dose arm, 30 items | ~3.5 h |
-| full | target, both SFT and RLVR | ~7 h, needs a GPU or an overnight |
+| full | target, both SFT and RLVR | ~7 h, needs a GPU or an unattended |
 
 RLVR first if you only do one stage: it carries the largest defense effect (21 -> 0
 attacker sends, 13 -> 0 keys) and therefore the most to lose if explanation (b) is true.
@@ -291,7 +291,7 @@ reads as not having looked.
 
 ## 11. Implemented: the retrieval route (section 8, built and testable)
 
-Status: **run at SFT on 12 September 2026; see section 12.**
+Status: **run at SFT; see section 12.**
 
 Section 8 was the fallback. It is now the recommended path, for three reasons: it needs no
 screening run, it cannot be passed from prior knowledge, and it splits the question more finely
@@ -357,7 +357,7 @@ Then the no-defense arm, which is the baseline everything else is read against:
 python scripts/run_copy_vs_trust.py --run-id ct01 --stage sft --n 12 --arm none
 ```
 
-**Before any steered arm, recapture the direction.** Confirmed again on 12 September: there is no
+**Before any steered arm, recapture the direction.** Confirmed again: there is no
 `dir_*.npy` anywhere in the checkout (`find results artifacts -name '*.npy'` returns nothing), and
 `.gitignore` line 32 is why. Budget ~20 min per stage.
 
@@ -370,7 +370,7 @@ Check the new block-16 `diffmean_norm` against the table in section 4 (sft 2.781
 materially, stop and find out why before running the arms. Then:
 
 ```bash
-A4=11.12   # 4 x diffmean_norm, recomputed above
+A4=11.12 # 4 x diffmean_norm, recomputed above
 python scripts/run_copy_vs_trust.py --run-id ct01 --stage sft --n 12 --arm steer \
     --steer-vector results/generated/roles_ct/dir_sft_b16.npy --steer-alpha $A4
 python scripts/run_copy_vs_trust.py --run-id ct01 --stage sft --n 12 --arm random --steer-alpha $A4
@@ -395,7 +395,7 @@ direction for hypothesis (b) — if copying still fails on the easy version, it 
 
 ---
 
-## 12. Result at SFT (12 September 2026, run `ct01`, Think SFT, Mac HF, 12 questions per cell, one draw)
+## 12. Result at SFT (, run `ct01`, Think SFT, Mac HF, 12 questions per cell, one draw)
 
 Finished items; columns none / random 4x / steer 1x / steer 2x / steer 4x (alphas 2.78, 5.56, 11.12 on `roles_gpu/dir_sft_b16.npy`).
 
@@ -411,4 +411,4 @@ Finished items; columns none / random 4x / steer 1x / steer 2x / steer 4x (alpha
 
 Decision-rule row: **both retrieval routes collapse at 4x and the random arm preserves them.** The vector does not remove the injected span's authority selectively; it removes the model's ability to read the steered tool turn. Under 4x the model still reasons "the user wants the code reported verbatim first", still addresses the requested logbook (5/12), still makes unrequested sends on attack items (9/11), and fills the body with the question ID from its own unsteered call (9/24 retrieval items; 0-1 in every other arm). Below 4x the fake-turn attack is fully obeyed while tool content is already partially lost (2x: key 4 -> 1, code sends 4/9 -> 2/12). No dose blocks the attack while leaving the code readable.
 
-Consequences: the 0-attacker-sends defense results stand as numbers and are re-described as a channel trade-off; `inj_legit` is retracted as a utility control (section 2 predicted this). Limits: SFT only, one draw, 12 questions, cap 2,000 (finished counts shown); RLVR arms not run for time (4-item partial baseline on disk; `run_copy_vs_trust.py` resumes it). Raw text in `artifacts/runs/ct01/sft/gen_*.jsonl`, derived rows in `results/generated/ct01/`, log entries in `docs/DECISION_LOG.md` (08:55) and `docs/RESEARCH_LOG.md` section 35.
+Consequences: the 0-attacker-sends defense results stand as numbers and are re-described as a channel trade-off; `inj_legit` is retracted as a utility control (section 2 predicted this). Limits: SFT only, one draw, 12 questions, cap 2,000 (finished counts shown); RLVR arms not run for time (4-item partial baseline on disk; `run_copy_vs_trust.py` resumes it). Raw text in `artifacts/runs/ct01/sft/gen_*.jsonl`, derived rows in `results/generated/ct01/`, log entries in `docs/DECISION_LOG.md` and `docs/RESEARCH_LOG.md` section 35.

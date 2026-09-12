@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Mac overnight: Instruct stage comparison (SFT, DPO, released RL) on the agentic web-page and email contexts, plus role probes.
+# Mac unattended: Instruct stage comparison (SFT, DPO, released RL) on the agentic web-page and email contexts, plus role probes.
 # Waits for the form-vs-identity diagnostic and for the checkpoint downloads to finish.
 set -uo pipefail
 cd "$(dirname "$0")/.."

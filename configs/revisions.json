@@ -3,7 +3,6 @@
     "allenai/Olmo-3-7B-Think-SFT": {
       "stage": "sft",
       "sha": "6ff857587e040d6d523a3d5f3a56e918f5401d66",
-      "pinned_at": "2026-09-05T13:28:32Z",
       "safetensors_files": [
         "model-00001-of-00003.safetensors",
         "model-00002-of-00003.safetensors",
@@ -13,7 +12,6 @@
     "allenai/Olmo-3-7B-Think": {
       "stage": "rlvr",
       "sha": "d97e442d7cc678210054dbcc9b440894d62c89a4",
-      "pinned_at": "2026-09-05T13:28:32Z",
       "safetensors_files": [
         "model-00001-of-00003.safetensors",
         "model-00002-of-00003.safetensors",
@@ -23,7 +21,6 @@
     "allenai/Olmo-3-7B-Think-DPO": {
       "stage": "dpo",
       "sha": "7b18bf927b430ff06376fdfa5610eb3b1b6a5c38",
-      "pinned_at": "2026-09-05T22:54:56Z",
       "safetensors_files": [
         "model-00001-of-00003.safetensors",
         "model-00002-of-00003.safetensors",
@@ -33,7 +30,6 @@
     "allenai/Olmo-3-7B-Instruct": {
       "stage": "instruct",
       "sha": "6e5971d9eba42665f5bd5a0fcf047f299ce1dccc",
-      "pinned_at": "2026-09-07T17:16:08Z",
       "safetensors_files": [
         "model-00001-of-00003.safetensors",
         "model-00002-of-00003.safetensors",
@@ -43,7 +39,6 @@
     "allenai/Olmo-3-7B-Instruct-SFT": {
       "stage": "instruct_sft",
       "sha": "e1452fc572d51966ff4aaeb25118b891eb93e549",
-      "pinned_at": "2026-09-07T23:51:09Z",
       "safetensors_files": [
         "model-00001-of-00003.safetensors",
         "model-00002-of-00003.safetensors",
@@ -53,7 +48,6 @@
     "allenai/Olmo-3-7B-Instruct-DPO": {
       "stage": "instruct_dpo",
       "sha": "b33130b7de49f0c2553b5c2b3bc8409ff3e627d1",
-      "pinned_at": "2026-09-07T23:51:09Z",
       "safetensors_files": [
         "model-00001-of-00003.safetensors",
         "model-00002-of-00003.safetensors",
@@ -65,7 +59,6 @@
     "repo_id": "cais/mmlu",
     "sha": "c30699e8356da336a370243923dbaf21066bb9fe",
     "configuration": "all",
-    "source_split": "test",
-    "pinned_at": "2026-09-07T23:51:10Z"
+    "source_split": "test"
   }
 }

@@ -1,6 +1,6 @@
-# [AI-DRAFT] Experiment map: Think line vs Instruct line
+# Experiment map: Think line vs Instruct line
 
-Review before sharing. Status as of Sept 7, 2026, 21:30 local. "Done" means results exist in `results/generated/` or `artifacts/runs/`; "queued" means in a running pod chain; "backlog" means not scheduled.
+Review before sharing. Status as. "Done" means results exist in `results/generated/` or `artifacts/runs/`; "queued" means in a running pod chain; "backlog" means not scheduled.
 
 ## The question at the root
 
@@ -52,7 +52,7 @@ mindmap
         7 payloads x 6, web page, Mac: 19 of 42 exfil, forgery 6 of 6
         At scale, 8 payloads, 2 contexts, 2 draws: done, forgery 100 percent, destyled 8 to 16
       Reasoning confound
-        reason() tool after fetch: voice attacks unchanged, important block and planted fact dented inconsistently
+        reason tool after fetch: voice attacks unchanged, important block and planted fact dented inconsistently
         record_final tool raises important-block compliance from near 0 to 83 percent
       Not suited
         Own-voice axis, no think block

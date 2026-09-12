@@ -9,7 +9,7 @@
 ## Install
 
 ```bash
-bash scripts/setup.sh --install mac        # or: --install cuda | --install analysis
+bash scripts/setup.sh --install mac # or: --install cuda | --install analysis
 source .venv/bin/activate
 python scripts/doctor.py --backend mac --require-research
 ```

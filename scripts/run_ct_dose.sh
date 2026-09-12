@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copy-vs-trust dose response, reordered 2026-09-12 08:00 for time: SFT 2x, SFT 1x, then RLVR none + 2x as an optional tail.
+# Copy-vs-trust dose response, reordered for time: SFT 2x, SFT 1x, then RLVR none + 2x as an optional tail.
 # Same 12 questions x 4 conditions as ct01. Alphas are exact fractions of the headline 4x values (11.12 sft, 11.44 rlvr).
 set -uo pipefail
 cd "$(dirname "$0")/.."

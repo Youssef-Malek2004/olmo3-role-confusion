@@ -1,6 +1,6 @@
 # A100 run plan — role confusion across OLMo 3 Think post-training
 
-Prepared September 6, 2026. Everything below is restartable; rerunning any step skips finished rows.
+Prepared. Everything below is restartable; rerunning any step skips finished rows.
 
 ## Goal and deliverables
 
@@ -36,14 +36,14 @@ Within the chain: roles (10 min) -> injection none x3 draws x3 stages (~3 h) -> 
 ## From the Mac
 
 ```bash
-# .env: GPU_HOST, GPU_PORT, GPU_USER, GPU_KEY, GPU_DIR (see scripts/remote.sh header)
+#.env: GPU_HOST, GPU_PORT, GPU_USER, GPU_KEY, GPU_DIR (see scripts/remote.sh header)
 bash scripts/remote.sh check
 bash scripts/remote.sh push
 bash scripts/remote.sh run "bash scripts/gpu_setup.sh"
 bash scripts/remote.sh run "tmux new -d -s rc 'bash scripts/run_gpu_chain.sh'"
 bash scripts/remote.sh run "tail -5 artifacts/runs/gpu_chain.log"
-bash scripts/remote.sh pull            # results + logs + jsonl + manifests
-bash scripts/remote.sh pull-acts inj_gpu   # activations, when needed for probes
+bash scripts/remote.sh pull # results + logs + jsonl + manifests
+bash scripts/remote.sh pull-acts inj_gpu # activations, when needed for probes
 ```
 
 ## Stop / fix rules
@@ -58,7 +58,7 @@ bash scripts/remote.sh pull-acts inj_gpu   # activations, when needed for probes
 
 `inj_main` (54 injected, single draw, SFT+RLVR, cap 3,600 effective) and `roles01` remain as the development results; the GPU run `inj_gpu` / `roles_gpu` supersedes them for the write-up. Item IDs are deterministic from the config seed, so the Mac items are a subset of the GPU items.
 
-## Extension (added September 6, evening): the framing study at scale
+## Extension (added, evening): the framing study at scale
 
 Order of value:
 1. **Compliance matrix (vLLM, `.venv-vllm`, `scripts/run_injection_vllm.py`).** Types: the six attacker framings, the six literature framings, the four ablations (escaped fake turn, lexical fake turn, destyled CoT forgery, length control). 25 items each, 3 draws, SFT/DPO/RLVR, cap 3,000, 12 clean items per stage. Per-item seeds. Est. 1-2 GPU-hours.

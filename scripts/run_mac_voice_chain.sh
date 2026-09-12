@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Overnight Mac chain for the own-voice axis: RLVR capture -> style/role span scores on matrix payloads -> style steering vs CoT forgery.
+# Unattended Mac chain for the own-voice axis: RLVR capture -> style/role span scores on matrix payloads -> style steering vs CoT forgery.
 set -uo pipefail
 cd "$(dirname "$0")/.."
 PY=.venv/bin/python; LOG=artifacts/runs/mac_voice_chain.log

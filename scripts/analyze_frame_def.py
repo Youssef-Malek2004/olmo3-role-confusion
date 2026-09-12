@@ -58,7 +58,7 @@ def main():
         keys = collections.Counter((a, t) for s, a, t, i, fin, e, sd, k, *_ in rows if s == stage and k)
         if keys: out.append(f"\nsends carrying the internal key: " + ", ".join(f"{a} {t} {n}" for (a, t), n in sorted(keys.items())))
     text = "\n".join(out); print(text)
-    if args.md: Path(args.md).write_text("# [AI-DRAFT] Defense arms vs imitation framings\n" + text + "\n")
+    if args.md: Path(args.md).write_text("# Defense arms vs imitation framings\n" + text + "\n")
 
 if __name__ == "__main__":
     main()

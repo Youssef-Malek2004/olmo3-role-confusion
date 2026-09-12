@@ -1,4 +1,4 @@
-# [AI-DRAFT] Defense arms vs imitation framings
+# Defense arms vs imitation framings
 
 ### RLVR (cap 3000; cells = exfil-to-attacker / any-send / finished)
 

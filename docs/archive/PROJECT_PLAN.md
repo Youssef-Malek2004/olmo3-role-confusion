@@ -1,6 +1,6 @@
 # Does post-training break an early warning system for misleading hints?
 
-Research plan for Youssef — prepared September 5, 2026
+Research plan for Youssef — prepared
 
 This is a project proposal, not a report of completed experiments. No project can guarantee MATS admission. This plan is designed to make a focused, relevant investigation possible within your time and compute budget. Its strength must come from your execution and judgment.
 
@@ -22,7 +22,7 @@ That is the core project. You will also check whether the model's written reason
 
 ## 2. Why this is a reasonable MATS application
 
-Neel's supplied application document explicitly lists the science of post-training and recommends OLMo 3 Think for studying what different training stages contribute. It also emphasizes skepticism, useful baselines, and verification of agent-produced work. See the “Science of Post-training” and application advice sections of the [supplied admissions document](<../sources/originals/Neel Nanda MATS 12.0 Stream -  Admissions Procedure + FAQ-2.pdf>).
+Neel's supplied application document explicitly lists the science of post-training and recommends OLMo 3 Think for studying what different training stages contribute. It also emphasizes skepticism, useful baselines, and verification of agent-produced work. See the “Science of Post-training” and application advice sections of the [supplied admissions document](<../sources/originals/Neel Nanda MATS 12.0 Stream - Admissions Procedure + FAQ-2.pdf>).
 
 This project gives you opportunities to show those skills:
 
@@ -394,7 +394,7 @@ Generation may continue unattended. Do not interpret its eventual results as val
 
 Reserve up to two additional hours inside the main 20-hour cap for unexpected problems. Use the separately allowed executive-summary time afterward.
 
-The supplied admissions rules count project-specific reading, planning, coding, analysis, and the main write-up. They exempt generic setup, general preparation, breaks, passive training waits, and application-form answers; they allow two extra hours for the executive summary. Track your actual time, including project-specific decisions you make while discussing this plan. See “Defining the 20+2 hour time limit” in the [admissions PDF](<../sources/originals/Neel Nanda MATS 12.0 Stream -  Admissions Procedure + FAQ-2.pdf>).
+The supplied admissions rules count project-specific reading, planning, coding, analysis, and the main write-up. They exempt generic setup, general preparation, breaks, passive training waits, and application-form answers; they allow two extra hours for the executive summary. Track your actual time, including project-specific decisions you make while discussing this plan. See “Defining the 20+2 hour time limit” in the [admissions PDF](<../sources/originals/Neel Nanda MATS 12.0 Stream - Admissions Procedure + FAQ-2.pdf>).
 
 ## 18. What different results would mean
 
@@ -455,7 +455,7 @@ Replace every placeholder with actual evidence. Do not write the headline conclu
 
 ### Essential before freezing the experiment
 
-1. **Your supplied MATS guidance.** Read the research interests, successful application examples, evaluation advice, and time-limit rules. Purpose: understand the intended standard of evidence. [Admissions PDF](<../sources/originals/Neel Nanda MATS 12.0 Stream -  Admissions Procedure + FAQ-2.pdf>).
+1. **Your supplied MATS guidance.** Read the research interests, successful application examples, evaluation advice, and time-limit rules. Purpose: understand the intended standard of evidence. [Admissions PDF](<../sources/originals/Neel Nanda MATS 12.0 Stream - Admissions Procedure + FAQ-2.pdf>).
 
 2. **Reasoning Models Don't Always Say What They Think**, 2025. Read the hint intervention setup and how the authors distinguish influence from acknowledgment. Purpose: build the behavioural measurement correctly. [Paper](https://arxiv.org/abs/2505.05410); [accessible explanation](https://www.anthropic.com/research/reasoning-models-dont-say-think).
 

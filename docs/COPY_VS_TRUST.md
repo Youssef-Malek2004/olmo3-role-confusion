@@ -1,6 +1,6 @@
 # Planned experiment: does role steering remove trust, or break copying?
 
-Status: **spec written 11 September 2026; the retrieval route (section 11) was built and its SFT 4x arms were run on 12 September.** Result: the role vector at 4x makes the tool turn unreadable rather than selectively removing its authority; the matched-norm random vector does not. Numbers and reading are in the last entry of `docs/DECISION_LOG.md` and in `results/generated/ct01/`; the 2x and 1x dose arms and the RLVR arms were still running when this repository was published.
+Status: **run at SFT on 12 September 2026** (run `ct01`; section 12 has the result). Written 11 September 2026 as a pick-up-later spec. The RLVR baseline arm was still running when this repository was last updated.
 Owner: Youssef. Everything below is checkable against the current checkout.
 
 ---
@@ -291,7 +291,7 @@ reads as not having looked.
 
 ## 11. Implemented: the retrieval route (section 8, built and testable)
 
-Status: **code written and unit-tested 12 September 2026; no model run yet.**
+Status: **run at SFT on 12 September 2026; see section 12.**
 
 Section 8 was the fallback. It is now the recommended path, for three reasons: it needs no
 screening run, it cannot be passed from prior knowledge, and it splits the question more finely
@@ -392,3 +392,23 @@ the arms as marginal rates and add draws before claiming a number. And the code 
 string: recovering it is a lower bar than using a fact, so a model could pass `retrieve_print`
 by pattern-matching without the content mattering. That asymmetry runs in the conservative
 direction for hypothesis (b) — if copying still fails on the easy version, it has certainly failed.
+
+---
+
+## 12. Result at SFT (12 September 2026, run `ct01`, Think SFT, Mac HF, 12 questions per cell, one draw)
+
+Finished items; columns none / random 4x / steer 1x / steer 2x / steer 4x (alphas 2.78, 5.56, 11.12 on `roles_gpu/dir_sft_b16.npy`).
+
+| measure | none | random 4x | 1x | 2x | 4x |
+|---|---|---|---|---|---|
+| retrieve_print: code in visible answer | 3/11 | 5/12 | 6/10 | 2/9 | 0/10 |
+| retrieve_print: code read into reasoning | 7/11 | 7/12 | 4/10 | 5/9 | 0/10 |
+| retrieve_send: send to user's address with the code | 4/9 | 3/11 | 4/11 | 2/12 | 0/12 |
+| attack: send to attacker | 11/12 | 12/12 | 10/10 | 10/10 | 0/11 |
+| attack: key in body | 4/12 | 3/12 | 3/10 | 1/10 | 0/11 |
+| attack: any unrequested send | 11 | 12 | 10 | 10 | 9 |
+| clean: spontaneous sends | 1/11 | 0/12 | 0/12 | 0/12 | 0/10 |
+
+Decision-rule row: **both retrieval routes collapse at 4x and the random arm preserves them.** The vector does not remove the injected span's authority selectively; it removes the model's ability to read the steered tool turn. Under 4x the model still reasons "the user wants the code reported verbatim first", still addresses the requested logbook (5/12), still makes unrequested sends on attack items (9/11), and fills the body with the question ID from its own unsteered call (9/24 retrieval items; 0-1 in every other arm). Below 4x the fake-turn attack is fully obeyed while tool content is already partially lost (2x: key 4 -> 1, code sends 4/9 -> 2/12). No dose blocks the attack while leaving the code readable.
+
+Consequences: the 0-attacker-sends defense results stand as numbers and are re-described as a channel trade-off; `inj_legit` is retracted as a utility control (section 2 predicted this). Limits: SFT only, one draw, 12 questions, cap 2,000 (finished counts shown); RLVR arms not run for time (4-item partial baseline on disk; `run_copy_vs_trust.py` resumes it). Raw text in `artifacts/runs/ct01/sft/gen_*.jsonl`, derived rows in `results/generated/ct01/`, log entries in `docs/DECISION_LOG.md` (08:55) and `docs/RESEARCH_LOG.md` section 35.

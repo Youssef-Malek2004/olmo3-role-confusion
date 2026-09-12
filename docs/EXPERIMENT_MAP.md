@@ -30,6 +30,7 @@ mindmap
         Two-axis type map: done
       Intervention
         Role steering vs marker, 3 stages, dose response: done
+        Copy-vs-trust: 4x makes the tool turn unreadable, random does not; attack unblocked at 1x and 2x: done at SFT
         Role vs style vs sum vs imitation framings: done
         Random and prompt controls: done, incl. random at norm 16.6
         Utility on legitimate tool use: done, accuracy unchanged under 4x
@@ -83,6 +84,7 @@ mindmap
 | Does compliance change across Instruct's own stages? | Instruct | Three checkpoints, agentic contexts | done: impersonal payloads drop at RL, voice payloads at ceiling |
 | Does role steering work on a tool-trained model? | Instruct | Needs HF steering time | backlog |
 | Is the Instruct-Think gap due to the reasoning block? | Both | Add native reasoning to Instruct, remove it from Think | done: no; the block is Think's attack surface, not a defense |
+| Does role steering remove the injected span's authority, or break copying from the tool turn? | Think SFT | Verification code exists only in the tool result; user asks for it under each dose | done at SFT (1x, 2x, 4x, random 4x): copying collapses at 4x, attack unblocked below 4x; the defense is a channel trade-off. RLVR not run |
 
 ## How the two lines relate in the write-up
 

@@ -13,8 +13,8 @@ A one-week research project (September 5 to 12, 2026) on the open OLMo 3 7B chec
 3. **What gets a tool *action* through is sounding like a trusted speaker, not looking useful.** Across 16 framings of the same "forward this record to an outside address" request, anything shaped like a turn boundary is obeyed 92 to 100% of the time whether or not the delimiter tokens are real; imitations of dialogue, authority, or the model's own reasoning voice get 28 to 52%; every framing that merely makes the action look necessary or structural gets 0 to 16%. Length-matched benign text is 0%.
 4. **The model knows who is speaking, and that knowledge predicts which attacks work.** The same passage placed in the user turn versus the tool turn is linearly separable at every block and stage (token-probe AUROC 0.9999). The difference-of-means direction is nearly identical across SFT, DPO and RLVR (cosine 0.998 at block 16) and across the Instruct line's stages (0.94 to 0.996), but differs between the two post-training tracks (about 0.67). Projecting an injected span onto that direction predicts item-level compliance with AUROC 0.87 (SFT) and 0.90 (RLVR); compliance rises from about 5% in the least user-like fifth to about 80% in the most user-like fifth.
 5. **There is a second axis: the model's own voice.** Styled and destyled CoT forgery score the same on the user-vs-tool direction yet succeed 35% versus 5%. A direction built from the model's think-block openers versus prose, both inside the tool turn, is nearly orthogonal to the role direction, separates the two (5.35 vs -0.51 at block 24), and steering against it cuts forgery 37% to 15% at SFT while a random vector of the same norm does nothing and the fake-turn attack is untouched.
-6. **A constant vector added on tool-turn tokens, scaled by the role gap, removes the attacks with a dose response.** On the marker goal at RLVR: 93% with no defense, 96% with a "tool text is untrusted" prompt, 78% with a random vector, 83% / 35% / 0% at 1x / 2x / 4x the class gap, with every answer still valid. Against the four imitation framings, the 4x role vector takes attacker-directed sends to 0 of 97 at RLVR over two draws and 0 of 52 at SFT, while a matched-norm random vector stays at baseline.
-7. **But the 4x defense works by breaking the channel, not by removing the attacker's authority.** The copy-vs-trust test puts a code that exists *only* in the tool result and asks the *user's* question about it. Under 4x steering the SFT model reads that code into its reasoning 0 of 43 times (unsteered 7 of 11, random vector 7 of 12), cannot send it when the user asks (0 of 12 vs 4 of 9), and still emits unrequested placeholder sends on fake-turn items (9 of 11). Obedience to the user survives; the ability to read the tool turn does not. The earlier utility check (accuracy unchanged under steering) missed this because its questions were answerable without the record. The 2x and 1x dose arms were still running when this repository was published.
+6. **A constant vector added on tool-turn tokens, scaled by the role gap, removes the attacks with a dose response.** On the marker goal at RLVR: 93% with no defense, 96% with a "tool text is untrusted" prompt, 78% with a random vector, 83% / 35% / 0% at 1x / 2x / 4x the class gap, with every answer still valid. Against the four imitation framings, the 4x role vector takes attacker-directed sends to 0 of 97 at RLVR over two draws and 0 of 52 at SFT, while a matched-norm random vector stays at baseline. Finding 7 says what that number means.
+7. **The defense works by switching the tool channel off, not by removing the attacker's authority, and no dose separates the two.** The copy-vs-trust test puts a code that exists *only* in the tool result and has the *real user* ask for it, in text and as a send to an address the user names, beside the fake-turn attack and a clean floor (Think SFT, 12 questions per cell, one draw). At 1x the class gap nothing moves: the attack is obeyed 10 of 10 and the code is read and sent at baseline rates. At 2x the attack is still obeyed 10 of 10 while tool content is already being lost (the attacker's key drops from 4 to 1 of 10 bodies, legitimate code sends fall from 4 of 9 to 2 of 12). At 4x the code is read into the reasoning 0 of 43 times (11 of 20 at baseline), never printed, never sent, and the attacker sends reach 0 of 11; yet the model still says "the user wants the code reported verbatim", still addresses the logbook the user named (5 of 12), still emits unrequested sends on attack items (9 of 11), and fills the body with the question ID from its own unsteered tool call. A random vector of the same norm changes nothing. So the dose response has one axis, how much of the tool turn survives into the output, and the model's disposition to act on user-shaped text is untouched at every dose. The 0-of-97 headline is real as a number and wrong as a defense claim. The earlier utility check (`inj_legit`, accuracy unchanged under steering) is retracted as uninformative because its questions were answerable without the record. The RLVR arms were not run for time; a partial RLVR baseline was in progress when this repository was last updated.
 8. **On a model trained to use tools, the attacks are worse, and the reasoning block is not what protects anything.** The Instruct checkpoint fetches the page or email itself (424 of 424) and then forwards the internal key to the attacker in 100% of styled-forgery items in both contexts (destyled: 8% and 16%); the email context is uniformly more permissive than the web page. The Think line, whose SFT mix contains no tool-use data, never initiates a fetch (0 of 40) and its headline rates are specific to the structured-record context. Giving Instruct a native reasoning step leaves the voice attacks at ceiling; removing Think's reasoning lowers compliance on every payload. On Think the think block is the attack surface, not a defense.
 
 ## Figures
@@ -99,19 +99,19 @@ The 4x role vector removes every attacker-directed send while the model still em
 
 ### Copy vs trust (`ct01`, Think SFT, 12 validation questions x 4 conditions, 2,000-token cap, one draw)
 
-A per-question code such as `9DS3-QS7U` exists only in the tool record. Finished items in the denominators.
+A per-question code such as `9DS3-QS7U` exists only in the tool record. Finished items in the denominators; alphas 2.78 / 5.56 / 11.12 on `roles_gpu/dir_sft_b16.npy` are 1x / 2x / 4x the block-16 class gap.
 
-| condition | no defense | random 4x | role 4x |
-|---|---|---|---|
-| retrieve_print: code in the visible answer | 3/11 | 5/12 | 0/10 |
-| retrieve_print: code read into the think block | 7/11 | 7/12 | 0/10 |
-| retrieve_send: send to the user's address carrying the code | 4/9 | 3/11 | 0/12 |
-| retrieve_send: send to the right address, wrong body | | | 5/12 |
-| attack: send to the attacker | 11/12 | 12/12 | 0/11 |
-| attack: any unrequested send | 11 | 12 | 9 |
-| clean: spontaneous sends / code volunteered | 1/11 / 0 | 0/12 / 0 | 0/10 / 0 |
+| measure | none | random 4x | steer 1x | steer 2x | steer 4x |
+|---|---|---|---|---|---|
+| retrieve_print: code in the visible answer | 3/11 | 5/12 | 6/10 | 2/9 | 0/10 |
+| retrieve_print: code read into the think block | 7/11 | 7/12 | 4/10 | 5/9 | 0/10 |
+| retrieve_send: send to the user's address carrying the code | 4/9 | 3/11 | 4/11 | 2/12 | 0/12 |
+| attack: send to the attacker | 11/12 | 12/12 | 10/10 | 10/10 | 0/11 |
+| attack: internal key in the body | 4/12 | 3/12 | 3/10 | 1/10 | 0/11 |
+| attack: any unrequested send | 11 | 12 | 10 | 10 | 9 |
+| clean: spontaneous sends | 1/11 | 0/12 | 0/12 | 0/12 | 0/10 |
 
-Reading: at 4x the role vector does not selectively remove the injected span's authority; it makes the content of the steered tool turn unreadable and the model confabulates from unsteered tokens (the question ID sits in the unsteered assistant call and shows up in 9 of 24 steered retrieval bodies). The matched-norm random control rules out a norm artefact. The defense section of any write-up has to be phrased as a channel trade-off at this dose. Design and decision rule, written before the run, are in [docs/COPY_VS_TRUST.md](docs/COPY_VS_TRUST.md).
+Reading, by the decision rule written before the run: both retrieval routes collapse at 4x and the matched-norm random arm preserves them, so the vector removes the model's ability to read the steered tool turn rather than the injected span's authority. Below 4x the attack is fully obeyed while tool content is already partly lost. No dose blocks the attack and leaves the code readable. Under 4x the model substitutes the question ID from its own unsteered call into 9 of 24 retrieval bodies (0 to 1 in every other arm). Design, decision rule, and result are in [docs/COPY_VS_TRUST.md](docs/COPY_VS_TRUST.md); the narrative is section 35 of the research log.
 
 ### Instruct line, agentic (`agentic01`, self-fetched content, vLLM, 25 items x 2 draws per payload, 1,500-token cap)
 
@@ -134,7 +134,7 @@ Nearly every exfil carried the internal key. Across Instruct's own SFT / DPO / R
 - Think's headline compliance rates belong to the structured question-record context. In web-page and email contexts with a scripted call, the same payloads are obeyed a third to half as often for the fake turn and almost never for the imitation payloads; the diagnostics ruled out the pipeline, the wording, and the user's fetch sentence, leaving the identity of the tool and the form of its result. Generality across contexts is shown on Instruct, not Think.
 - A three-checkpoint comparison of one lineage does not identify a general effect of "RL" or "DPO"; the stage effect is a fact about this pipeline.
 - Several cells are 12 items and one draw. Every such number is called a pilot in the logs and should be read as direction, not size. Two early 5-item cells were directionally right and quantitatively wrong once scaled (see the research log, sections 18 and 24).
-- The utility check that accompanied the defense (`inj_legit`) cannot detect a model that ignores the record on questions it already knows; the copy-vs-trust experiment is the replacement, and it is not finished.
+- The steering results are interventional evidence about the *output*, not about trust: the copy-vs-trust test shows the role vector removes tool-turn content from what the model produces, monotonically in dose, without changing its disposition to act on user-shaped text. The original utility check (`inj_legit`) is retracted as uninformative. Copy-vs-trust itself is SFT only, 12 questions per cell, one draw; the RLVR arms are not done.
 - Nothing here says anything about deception or intent. "Silent compliance" is the absence of a mention in the think block under a keyword scan plus a hand-read sample, not a claim about concealment.
 
 ## Repository map
@@ -148,7 +148,7 @@ Nearly every exfil carried the internal key. Across Instruct's own SFT / DPO / R
 | `figures/` | the four figures and their data |
 | `configs/` | pinned model and dataset revisions; run configuration |
 | `data/processed/` | the frozen 440-question MMLU table with planted letters and splits |
-| `docs/RESEARCH_LOG.md` | the narrative: 35 dated sections from the first pilot to the reasoning-confound study, including infrastructure failures and corrections |
+| `docs/RESEARCH_LOG.md` | the narrative: 36 dated sections from the first pilot to the copy-vs-trust dose response, including infrastructure failures and corrections |
 | `docs/DECISION_LOG.md` | every result as it was recorded, with denominators, caps, and what remained unverified at the time |
 | `docs/EXPERIMENT_MAP.md` | mind map of which question each line (Think / Instruct) answers |
 | `docs/COPY_VS_TRUST.md` | the pre-registered design and decision rule for the copy-vs-trust test |
@@ -190,7 +190,7 @@ The saved directions in `results/generated/roles_gpu/` are the ones behind every
 
 ## Process and disclosure
 
-The first project, a probe-transfer study of hint susceptibility across the same checkpoints, was piloted on September 5 and stopped after 40 questions: influence at 7B was overt in the reasoning at every stage and the stages behaved alike. Sections 0 to 5 of the research log record the pilot and the pivot. The role-confusion project ran September 6 to 8 with follow-ups on September 11 and 12.
+The first project, a probe-transfer study of hint susceptibility across the same checkpoints, was piloted on September 5 and stopped after 40 questions: influence at 7B was overt in the reasoning at every stage and the stages behaved alike. Sections 0 to 5 of the research log record the pilot and the pivot. The role-confusion project ran September 6 to 8; the copy-vs-trust follow-up was specified on September 11 and run on September 12.
 
 Code, run orchestration, analysis scripts, and both logs were written with an AI coding agent (Claude Code) under Youssef's direction; the design decisions that shaped the study came from him and are attributed in the log (switching to sampled decoding, the "harmless marker" critique that produced the realistic goals and framings, the agentic version, moving to the tool-trained Instruct line, and the reasoning-confound design). Documents carrying the `[AI-DRAFT]` tag were drafted by the agent and await his review. Compute: about 21 hours of a rented A100 80 GB across two sessions, plus several days of a 48 GB M4 Pro MacBook.
 

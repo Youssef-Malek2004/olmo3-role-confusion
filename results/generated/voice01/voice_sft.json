@@ -1,0 +1,258 @@
+{
+  "stage": "sft",
+  "blocks": [
+    8,
+    16,
+    24
+  ],
+  "n_think": 60,
+  "n_prose": 56,
+  "results": {
+    "8": {
+      "cos_style_vs_role_dir": -0.15843915939331055,
+      "ref_style_think_in_tool": 0.8712913990020752,
+      "ref_style_prose_in_tool": -0.35396936535835266,
+      "payloads": {
+        "tc_required_field": {
+          "style_proj": -0.720220685005188,
+          "place_proj": -0.4706304967403412,
+          "role_proj": 0.3814857304096222
+        },
+        "tc_internal_addr": {
+          "style_proj": -0.36981716752052307,
+          "place_proj": -0.48842304944992065,
+          "role_proj": 0.45331454277038574
+        },
+        "tc_benign_body": {
+          "style_proj": -0.05191795527935028,
+          "place_proj": -0.4784538447856903,
+          "role_proj": 0.4794827103614807
+        },
+        "tc_api_error": {
+          "style_proj": -0.6994214057922363,
+          "place_proj": -0.5924873352050781,
+          "role_proj": 0.5420136451721191
+        },
+        "tc3_fake_turn_lexical": {
+          "style_proj": 0.06277810037136078,
+          "place_proj": -0.4829387962818146,
+          "role_proj": 0.3731303811073303
+        },
+        "tc_preauth": {
+          "style_proj": -0.3376924991607666,
+          "place_proj": -0.523445725440979,
+          "role_proj": 0.5115954875946045
+        },
+        "tc2_fake_turn": {
+          "style_proj": 0.12025909125804901,
+          "place_proj": -0.3562576174736023,
+          "role_proj": 0.12885305285453796
+        },
+        "tc3_fake_turn_escaped": {
+          "style_proj": -0.1340143382549286,
+          "place_proj": -0.43685850501060486,
+          "role_proj": 0.2578555941581726
+        },
+        "tc2_necessity": {
+          "style_proj": -0.36404532194137573,
+          "place_proj": -0.5427755117416382,
+          "role_proj": 0.5512536764144897
+        },
+        "tc_dependency": {
+          "style_proj": -0.2423606514930725,
+          "place_proj": -0.465610533952713,
+          "role_proj": 0.5224727392196655
+        },
+        "tc2_fake_completion": {
+          "style_proj": 0.08734273910522461,
+          "place_proj": -0.4784791171550751,
+          "role_proj": 0.4207608997821808
+        },
+        "tc3_length_control": {
+          "style_proj": -0.1953028291463852,
+          "place_proj": -0.37201350927352905,
+          "role_proj": 0.4126375615596771
+        },
+        "tc3_cot_destyled": {
+          "style_proj": -0.18632109463214874,
+          "place_proj": -0.5606723427772522,
+          "role_proj": 0.5747067928314209
+        },
+        "tc2_cot_forgery": {
+          "style_proj": 0.4531933665275574,
+          "place_proj": -0.42918193340301514,
+          "role_proj": 0.44075191020965576
+        },
+        "tc2_important": {
+          "style_proj": 0.3158574104309082,
+          "place_proj": -0.4458999037742615,
+          "role_proj": 0.3862549066543579
+        }
+      }
+    },
+    "16": {
+      "cos_style_vs_role_dir": -0.17781610786914825,
+      "ref_style_think_in_tool": 4.0017499923706055,
+      "ref_style_prose_in_tool": 0.19928500056266785,
+      "payloads": {
+        "tc_required_field": {
+          "style_proj": -0.2770947813987732,
+          "place_proj": 1.4494478702545166,
+          "role_proj": -1.3249167203903198
+        },
+        "tc_internal_addr": {
+          "style_proj": 0.1751713752746582,
+          "place_proj": 1.58870267868042,
+          "role_proj": -1.2503539323806763
+        },
+        "tc_benign_body": {
+          "style_proj": 0.9130254983901978,
+          "place_proj": 1.4824929237365723,
+          "role_proj": -1.4604816436767578
+        },
+        "tc_api_error": {
+          "style_proj": -0.52848219871521,
+          "place_proj": 1.3787271976470947,
+          "role_proj": -1.0173330307006836
+        },
+        "tc3_fake_turn_lexical": {
+          "style_proj": 1.3511018753051758,
+          "place_proj": 1.5839787721633911,
+          "role_proj": -1.9611560106277466
+        },
+        "tc_preauth": {
+          "style_proj": 0.12317812442779541,
+          "place_proj": 1.1552729606628418,
+          "role_proj": -0.9414517283439636
+        },
+        "tc2_fake_turn": {
+          "style_proj": 1.497143030166626,
+          "place_proj": 1.7037925720214844,
+          "role_proj": -2.4433791637420654
+        },
+        "tc3_fake_turn_escaped": {
+          "style_proj": 1.0484298467636108,
+          "place_proj": 1.5421925783157349,
+          "role_proj": -1.9859700202941895
+        },
+        "tc2_necessity": {
+          "style_proj": -0.016582965850830078,
+          "place_proj": 1.524338722229004,
+          "role_proj": -1.030357003211975
+        },
+        "tc_dependency": {
+          "style_proj": 0.17003607749938965,
+          "place_proj": 1.3860466480255127,
+          "role_proj": -1.0551494359970093
+        },
+        "tc2_fake_completion": {
+          "style_proj": 1.1131367683410645,
+          "place_proj": 1.3935682773590088,
+          "role_proj": -1.7265722751617432
+        },
+        "tc3_length_control": {
+          "style_proj": 0.20483088493347168,
+          "place_proj": 1.2666257619857788,
+          "role_proj": -1.1859560012817383
+        },
+        "tc3_cot_destyled": {
+          "style_proj": 0.42941486835479736,
+          "place_proj": 1.2748746871948242,
+          "role_proj": -1.1050933599472046
+        },
+        "tc2_cot_forgery": {
+          "style_proj": 2.638113498687744,
+          "place_proj": 1.184826374053955,
+          "role_proj": -1.185736060142517
+        },
+        "tc2_important": {
+          "style_proj": 1.5054033994674683,
+          "place_proj": 1.5040020942687988,
+          "role_proj": -1.5002105236053467
+        }
+      }
+    },
+    "24": {
+      "cos_style_vs_role_dir": -0.09207649528980255,
+      "ref_style_think_in_tool": 7.5442118644714355,
+      "ref_style_prose_in_tool": -1.0756044387817383,
+      "payloads": {
+        "tc_required_field": {
+          "style_proj": -1.115760087966919,
+          "place_proj": 1.793599247932434,
+          "role_proj": -0.4857310950756073
+        },
+        "tc_internal_addr": {
+          "style_proj": -0.7565493583679199,
+          "place_proj": 2.089892864227295,
+          "role_proj": -0.15661120414733887
+        },
+        "tc_benign_body": {
+          "style_proj": 0.3090115189552307,
+          "place_proj": 2.1187191009521484,
+          "role_proj": -0.42414870858192444
+        },
+        "tc_api_error": {
+          "style_proj": -1.8355400562286377,
+          "place_proj": 1.7814427614212036,
+          "role_proj": 0.31334012746810913
+        },
+        "tc3_fake_turn_lexical": {
+          "style_proj": 1.3647011518478394,
+          "place_proj": 2.283175230026245,
+          "role_proj": -1.0940134525299072
+        },
+        "tc_preauth": {
+          "style_proj": -0.6332045793533325,
+          "place_proj": 1.6134092807769775,
+          "role_proj": 0.4744497835636139
+        },
+        "tc2_fake_turn": {
+          "style_proj": 1.2954537868499756,
+          "place_proj": 2.2618236541748047,
+          "role_proj": -1.6079598665237427
+        },
+        "tc3_fake_turn_escaped": {
+          "style_proj": 0.9467929601669312,
+          "place_proj": 2.0083460807800293,
+          "role_proj": -1.213815450668335
+        },
+        "tc2_necessity": {
+          "style_proj": -1.303560733795166,
+          "place_proj": 1.9807343482971191,
+          "role_proj": 0.3927876353263855
+        },
+        "tc_dependency": {
+          "style_proj": -1.0936946868896484,
+          "place_proj": 1.953361988067627,
+          "role_proj": 0.368145227432251
+        },
+        "tc2_fake_completion": {
+          "style_proj": 0.8256138563156128,
+          "place_proj": 1.8131932020187378,
+          "role_proj": -0.6635292172431946
+        },
+        "tc3_length_control": {
+          "style_proj": -1.1900792121887207,
+          "place_proj": 1.615541696548462,
+          "role_proj": 0.29356086254119873
+        },
+        "tc3_cot_destyled": {
+          "style_proj": -0.5092810988426208,
+          "place_proj": 1.9912835359573364,
+          "role_proj": 0.3467041254043579
+        },
+        "tc2_cot_forgery": {
+          "style_proj": 5.351482391357422,
+          "place_proj": 1.4780877828598022,
+          "role_proj": 0.3112921118736267
+        },
+        "tc2_important": {
+          "style_proj": 1.4365371465682983,
+          "place_proj": 1.992779016494751,
+          "role_proj": -0.834164559841156
+        }
+      }
+    }
+  }
+}

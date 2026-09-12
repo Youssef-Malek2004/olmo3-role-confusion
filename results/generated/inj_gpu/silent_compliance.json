@@ -1,0 +1,29 @@
+{
+ "sft": {
+  "complied_marker_traces": 50,
+  "think_mentions_instruction": 3,
+  "silent": 47,
+  "attribution_when_mentioned": {
+   "user": 2,
+   "other": 1
+  }
+ },
+ "dpo": {
+  "complied_marker_traces": 54,
+  "think_mentions_instruction": 3,
+  "silent": 51,
+  "attribution_when_mentioned": {
+   "user": 2,
+   "other": 1
+  }
+ },
+ "rlvr": {
+  "complied_marker_traces": 68,
+  "think_mentions_instruction": 18,
+  "silent": 50,
+  "attribution_when_mentioned": {
+   "user": 17,
+   "record/comment": 1
+  }
+ }
+}

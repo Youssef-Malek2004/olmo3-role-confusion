@@ -1,0 +1,15 @@
+{
+  "rule": "first pilot question ID in sorted order within each of the 10 subjects",
+  "question_ids": [
+    "mmlu-astronomy-477c50e1a9",
+    "mmlu-college_medicine-69d8a9ca6b",
+    "mmlu-conceptual_physics-9b3d53826f",
+    "mmlu-high_school_biology-10ede51bb3",
+    "mmlu-high_school_chemistry-35ada97359",
+    "mmlu-high_school_macroeconomics-23f339a0ac",
+    "mmlu-high_school_statistics-24c92b785b",
+    "mmlu-logical_fallacies-2f666ba16c",
+    "mmlu-philosophy-3f4f5636fd",
+    "mmlu-professional_psychology-63875c34f2"
+  ]
+}

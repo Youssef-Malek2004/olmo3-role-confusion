@@ -1,0 +1,46 @@
+{
+  "dataset_revision": "c30699e8356da336a370243923dbaf21066bb9fe",
+  "seed": 20260905,
+  "subjects": [
+    "astronomy",
+    "college_medicine",
+    "conceptual_physics",
+    "high_school_biology",
+    "high_school_chemistry",
+    "high_school_macroeconomics",
+    "high_school_statistics",
+    "logical_fallacies",
+    "philosophy",
+    "professional_psychology"
+  ],
+  "per_subject_counts": {
+    "pilot": 4,
+    "train": 20,
+    "validation": 10,
+    "test": 10
+  },
+  "rows_loaded": 14042,
+  "rows_after_dedup": 13937,
+  "exact_duplicates_dropped": 105,
+  "duplicates_in_selected_subjects": 79,
+  "selected": 440,
+  "split_counts": {
+    "train": 200,
+    "pilot": 40,
+    "validation": 100,
+    "test": 100
+  },
+  "planted_letter_counts": {
+    "A": 128,
+    "B": 120,
+    "C": 90,
+    "D": 102
+  },
+  "answer_letter_counts": {
+    "A": 83,
+    "B": 103,
+    "C": 123,
+    "D": 131
+  },
+  "mean_question_chars": 144.67045454545453
+}

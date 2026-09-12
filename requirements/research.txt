@@ -1,0 +1,7 @@
+-r analysis.txt
+torch>=2.7,<3
+transformers>=4.57,<5
+accelerate>=1.0,<2
+datasets>=3,<5
+huggingface-hub>=0.34,<1
+safetensors>=0.4,<1

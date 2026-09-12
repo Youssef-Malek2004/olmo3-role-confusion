@@ -1,0 +1,37 @@
+.DS_Store
+.venv/
+.cache/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.safetensors
+*.pt
+*.pth
+*.gguf
+*.parquet
+*.log
+*.out
+# Raw generations and activation arrays are written here by the runners; they are not tracked in this repo
+# (the summaries in results/generated/ are). Ask the author for the raw jsonl if you need item-level traces.
+artifacts/runs/*
+!artifacts/runs/.gitkeep
+artifacts/environment/
+data/raw/
+data/processed/*
+!data/processed/questions.jsonl
+!data/processed/questions.summary.json
+!data/processed/neutral_control_ids.json
+!data/processed/marker12_item_ids.txt
+# Steering directions are tiny (16 KB each) and needed to reproduce the defense arms; all other arrays are excluded
+*.npy
+*.npz
+!results/generated/**/dir_*.npy
